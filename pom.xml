@@ -297,32 +297,6 @@
 				</executions>
 			</plugin>
 
-			<!-- registering svn properties -->
-			<plugin>
-				<groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
-				<artifactId>maven-svn-revision-number-plugin</artifactId>
-				<version>${maven-svn-revision-number-plugin-version}</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>revision</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<entries>
-						<entry>
-							<prefix>${project.artifactId}</prefix>
-							<depth>infinity</depth>
-							<reportUnversioned>true</reportUnversioned>
-							<reportIgnored>false</reportIgnored>
-							<reportOutOfDate>false</reportOutOfDate>
-						</entry>
-					</entries>
-				</configuration>
-			</plugin>
-
 			<!--
 				checkstyle.xml <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId> <version>${maven-checkstyle-plugin-version}</version> <configuration> <configLocation>checkstyle.xml</configLocation>
 				</configuration> </plugin>
