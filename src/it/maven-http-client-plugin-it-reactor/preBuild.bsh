@@ -1,0 +1,41 @@
+import java.util.HashMap;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import com.google.code.server.http.*;
+import com.google.code.server.proxy.*;
+import com.google.code.server.*;
+import com.google.code.maven.plugin.http.client.transformer.*;
+
+try {
+	System.out.println("[INFO] running pre build script");
+	
+	SimpleHttpServer httpServer = new SimpleHttpServer();
+	httpServer.withHttpHandler("/hello-world.html", new StaticTextContentResponseHandler("<html>\n\t<body>Hello World!</body>\n</html>"));
+	httpServer.withHttpHandler("/parameters-echo.html", new ParametersEchoHandler() );
+	httpServer.withHttpHandler("/hello-world.txt", new DownloadResourceHandler( new ClassPathResource("hello-world.txt",SimpleHttpServer.class)) );	
+	HashMap search = new HashMap();
+	search.put("0", new ClassPathResource("0.xml", SimpleHttpServer.class));
+	search.put("1", new ClassPathResource("1.xml", SimpleHttpServer.class));
+	search.put("1.1", new ClassPathResource("1.1.xml", SimpleHttpServer.class));
+	search.put("1.2", new ClassPathResource("1.2.xml", SimpleHttpServer.class));
+	search.put("2.1", new ClassPathResource("2.1.xml", SimpleHttpServer.class));
+	search.put("2.2", new ClassPathResource("2.2.xml", SimpleHttpServer.class));
+	search.put("search-query", new ClassPathResource("search-query.xml", SimpleHttpServer.class));
+	httpServer.withHttpHandler("/jira/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml", new StaticJiraXmlSearchHandler(search));
+	httpServer.withHttpHandler("/helloWorldAuthentication.html", new AuthenticationHttpHandler(new FileCredentialsAuthenticator("Basic",
+			new ClassPathResource("credentials.properties", SimpleHttpServer.class).getFile()), new StaticTextContentResponseHandler(
+			"<html>\n\t<body>Hello World Authenticated!</body>\n</html>")));
+	httpServer.registerShutdownHook();
+	httpServer.start();	
+	ServerRegistry.register("http-server", httpServer);
+	
+	SimpleProxyServer proxyServer = new SimpleProxyServer();
+	proxyServer.registerShutdownHook();
+	proxyServer.start();
+	ServerRegistry.register("proxy-server", proxyServer);
+	
+	return true;
+} catch ( Throwable t ) {
+	t.printStackTrace();
+	return false;
+}

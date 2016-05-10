@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>@pom.groupId@</groupId>
+	<artifactId>maven-http-client-plugin-it-reactor</artifactId>
+	<name>maven http client plugin integration tests reactor</name>
+	<version>@pom.version@</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>maven-http-client-plugin-html-content-test</module>
+		<module>maven-http-client-plugin-file-download-test</module>
+		<module>maven-http-client-plugin-get-parameters-test</module>
+		<module>maven-http-client-plugin-proxy-test</module>
+		<module>maven-http-client-plugin-authentication-test</module>
+		<module>maven-http-client-plugin-jira-enricher-test</module>
+		<!-- <module>maven-http-client-plugin-form-authentication-test</module>  -->
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<html-content-url>http://localhost/hello-world.html</html-content-url>
+				<download-file-url>http://localhost/hello-world.txt</download-file-url>
+				<download-file>hello-world.txt</download-file>
+				<get-parameters-url>http://localhost/parameters-echo.html</get-parameters-url>
+				<proxy-host>localhost</proxy-host>
+				<proxy-port>8080</proxy-port>
+				<authentication-page-url>http://localhost/helloWorldAuthentication.html</authentication-page-url>
+				<authentication-login>guest</authentication-login>
+				<authentication-password>guest</authentication-password>
+				<jira-search-url>http://localhost/jira/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml</jira-search-url>
+			</properties>
+		</profile>
+		<profile>
+			<id>direct-web-access</id>
+			<properties>
+				<html-content-url>http://www.google.com</html-content-url>
+				<get-parameters-url>http://www.google.com/search</get-parameters-url>
+				<proxy-host>91.82.85.108</proxy-host>
+				<proxy-port>3128</proxy-port>
+			</properties>
+		</profile>
+	</profiles>
+</project>

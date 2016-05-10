@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.google.code.maven.plugins</groupId>
+	<artifactId>maven-http-client-plugin-repository-test</artifactId>
+	<name>maven http client plugin integration repository test</name>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.google.code.maven.plugins</groupId>
+				<artifactId>maven-http-client-plugin</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<failSafe>false</failSafe>
+					<request>
+						<properties>
+							<property>
+								<name>url</name>
+								<value>http://www.google.com</value>
+							</property>
+						</properties>
+					</request>
+					<transformers>
+						<transformer>
+							<className>com.google.code.maven.plugin.http.client.transformer.HttpStatusCodeValidator</className>
+						</transformer>
+						<transformer>
+							<className>com.google.code.maven.plugin.http.client.transformer.ResponseToFileResource</className>
+							<properties>
+								<property>
+									<name>target</name>
+									<value>file://${project.build.directory}/generated-html/google-home-page.html</value>
+								</property>
+							</properties>
+						</transformer>
+					</transformers>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

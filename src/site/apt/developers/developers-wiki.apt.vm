@@ -1,0 +1,138 @@
+#*
+ *    Copyright (C) 2011 Nadim Benabdenbi <nadim.benabdenbi@gmail.com>
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *#
+    ---
+    Developer Wiki
+    ---
+    Nadim Benabdenbi
+    ---
+    YYYY-MM-DD
+    ---
+
+Coding Conventions
+
+* Java Coding conventions
+
+    For consistency reasons, our Java code convention is mainly:
+
+    * Naming: Constants (i.e. static final members) values should always be in upper case. Using short, descriptive names for classes and methods.
+    * Organization: Avoid using a lot of public inner classes. Prefer interfaces instead of default implementation.
+    * Modifier: Avoid using final modifier on all member variables and arguments. Prefer using private or protected member instead of public member.
+    * Exceptions: Throw meaningful exceptions to makes debugging and testing more easy.
+    * Documentation: Document public interfaces well, i.e. all non-trivial public and protected functions should include Javadoc that indicates what it does. Note: it is an ongoing convention for the Maven Team.
+    * Testing: All non-trivial public classes should include corresponding unit or IT tests.
+
+* Environment setup
+
+** Eclipse settings
+
+*** Code Style
+
+      [[1]] import the repository file <<trunk/src/eclipse/preferences/java-code-style-clean-up.xml>> from <<Windows->Preferences->Java->Code Style->Clean up>> eclipse menu
+
+      [[2]] import the repository file <<trunk/src/eclipse/preferences/java-code-style-formatter.xml>> from <<Windows->Preferences->Java->Code Style->Formatter>> eclipse menu
+
+*** Launch
+
+      maven builds available under <<trunk/src/eclipse/launch>>
+
+** User environment
+
+      [[1]] set up M2_HOME variable to the maven distribution directory.
+
+      [[2]] install svn client and add binaries path to the user system path. ( svn client used from {{{http://www.collab.net/downloads/subversion}collabnet distribution}} )
+      
+      [[3]] install the GPG signature from {{{http://www.gnupg.org}The GNU Privacy Guard}}
+      
+      [[4]] import the GPG key 5D47B15D 
+      
+      [[5]] the tests uses the port 80 and 8080 for running respectively the http server and the proxy server. 
+
+
+** Svn settings
+
+      update the svn config file located to <Application Settings>/Subversion/config
+      
++---
+enable-auto-props = yes
+
+[auto-props]
+### IMAGES
+*.png = svn:mime-type=image/png
+*.jpg = svn:mime-type=image/jpeg
+*.jpeg = svn:mime-type=image/jpeg
+*.gif = svn:mime-type=application/octet-stream
+*.xcf = svn:mime-type=image/x-xcf
+*.ico = svn:mime-type=image/vnd.microsoft.icon
+*.gif = svn:mime-type=image/gif
+*.tif = svn:mime-type=image/tiff
+*.tiff = svn:mime-type=image/tiff
+### HTTP
+*.css = svn:eol-style=native;svn:mime-type=text/css
+*.js = svn:eol-style=native;svn:mime-type=text/javascript
+*.html = svn:eol-style=native;svn:mime-type=text/html
+*.htm = svn:eol-style=native;svn:mime-type=text/html
+*.php = svn:eol-style=native;svn:mime-type=text/html
+*.xhtml = svn:eol-style=native;svn:mime-type=text/xhtml+xml
+### sources
+*.c = svn:eol-style=native
+*.cpp = svn:eol-style=native
+*.h = svn:keywords=Author Date Id Rev URL;svn:eol-style=native
+*.sql = svn:eol-style=native;svn:mime-type=text/plain
+*.txt = svn:eol-style=native;svn:mime-type=text/plain
+*.java = svn:eol-style=native;svn:mime-type=text/plain
+*.properties = svn:eol-style=native;svn:mime-type=text/plain
+*.xml = svn:eol-style=native;svn:mime-type=text/xml
+*.xsd = svn:eol-style=native;svn:mime-type=text/xml
+*.xsl = svn:eol-style=native;svn:mime-type=text/xml
+*.xslt = svn:eol-style=native;svn:mime-type=text/xml
+*.pom = svn:eol-style=native;svn:mime-type=text/xml
+### shell
+*.sh = svn:eol-style=native;svn:executable
+*.bat = svn:eol-style=native;svn:executable   
+### DATA
+*.pdf = svn:mime-type=application/pdf
+*.avi = svn:mime-type=video/avi
+*.doc = svn:mime-type=application/msword
+*.eps = svn:mime-type=application/postscript
+*.gz = svn:mime-type=application/gzip
+*.mov = svn:mime-type=video/quicktime
+*.mp3 = svn:mime-type=audio/mpeg
+*.ppt = svn:mime-type=application/vnd.ms-powerpoint
+*.ps = svn:mime-type=application/postscript
+*.psd = svn:mime-type=application/photoshop
+*.rtf = svn:mime-type=text/rtf
+*.swf = svn:mime-type=application/x-shockwave-flash
+*.tgz = svn:mime-type=application/gzip
+*.wav = svn:mime-type=audio/wav
+*.xls = svn:mime-type=application/vnd.ms-excel
+*.zip = svn:mime-type=application/zip
+*.jar = svn:mime-type=application/java-archive
+*.asc = svn:eol-style=native
+*.sha1 = svn:eol-style=native;svn:mime-type=text/plain
+*.md5 = svn:eol-style=native;svn:mime-type=text/plain
+### OTHERS
+*.dsp = svn:eol-style=CRLF
+*.dsw = svn:eol-style=CRLF
+### DOCUMENTATION
+options = svn:eol-style=native;svn:mime-type=text/plain
+package-list = svn:eol-style=native;svn:mime-type=text/plain
+packages = svn:eol-style=native;svn:mime-type=text/plain
+### SYSTEM
+SConscript = svn:eol-style=native
+SConstruct = svn:eol-style=native
+USERINFO = svn:eol-style=native
+Makefile = svn:eol-style=native
++---

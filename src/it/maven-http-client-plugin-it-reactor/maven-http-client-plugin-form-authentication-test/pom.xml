@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>@pom.groupId@</groupId>
+		<artifactId>maven-http-client-plugin-it-reactor</artifactId>
+		<version>@project.version@</version>
+	</parent>
+	<artifactId>maven-http-client-plugin-form-authentication-test</artifactId>
+	<name>maven-http-client-plugin integration test : form authentication</name>
+	<packaging>pom</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>@pom.groupId@</groupId>
+				<artifactId>maven-http-client-plugin</artifactId>
+				<version>@project.version@</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<failSafe>false</failSafe>
+					<request>
+						<url>${form-autentication-page-url}</url>
+						<formCredentials>
+							<formUrl>${form-autentication-form-url}</formUrl>
+							<login>${form-autentication-login}</login>
+							<password>${form-autentication-form-password}</password>
+							<loginParameterName>${form-autentication-form-login-id}</loginParameterName>
+							<passwordParameterName>${form-autentication-form-password-id}}</passwordParameterName>
+							<parameters>
+								<parameter>
+									<name>continue</name>
+									<value>true</value>
+								</parameter>
+							</parameters>
+						</formCredentials>
+					</request>
+					<transformers>
+						<transformer>
+							<className>com.google.code.maven.plugin.http.client.transformer.HttpStatusCodeValidator</className>
+						</transformer>
+						<transformer>
+							<className>com.google.code.maven.plugin.http.client.transformer.ResponseToFileResource</className>
+						</transformer>
+					</transformers>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

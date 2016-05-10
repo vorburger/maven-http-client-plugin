@@ -1,0 +1,11 @@
+import com.google.code.server.*;
+
+try {
+	System.out.println("[INFO] running post build script");
+	//ServerRegistry.unregister("http-server").stop();
+	//ServerRegistry.unregister("proxy-server").stop();
+	return true;
+} catch ( Throwable t ) {
+	t.printStackTrace();
+	return false;
+}

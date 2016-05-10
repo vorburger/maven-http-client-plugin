@@ -1,0 +1,48 @@
+#*
+ *    Copyright (C) 2011 Nadim Benabdenbi <nadim.benabdenbi@gmail.com>
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *#
+    ---
+    Introduction
+    ---
+    Nadim Benabdenbi
+    ---
+    YYYY-MM-DD
+    ---
+
+Maven Http Client Plugin
+
+    This plugin queries an Http server and let you transform the Http Response within a Tranformer's flow.
+
+    The Http Client used comes from The apache foundation which let you perform any type of Http request (requesting throw proxy, requenting within Http authentication or form authentication).
+    
+    Many transformers are built-in within this plugin and you can use any third party ones without knowing the plugin core.
+
+* Goals Overview
+
+    * {{{./execute-mojo.html}execute}}
+    
+    * {{{./help-mojo.html}help}}
+
+* Using the plugin
+
+    General instructions on how to use the ${project.name} can be found on the {{{./usage.html}usage page}}.
+    
+    Http request use cases are described in the {{{./examples/index.html}examples page}}.
+    
+    Http response transformers are described in the {{{./transformers/index.html}transformers page}}.
+
+    If you feel like the plugin is missing a feature or has a defect, you can fill a feature request or bug report in our
+    {{{${issues-tracker-url}}issue tracker}}. When creating a new issue, please provide a comprehensive description of your
+    concern.

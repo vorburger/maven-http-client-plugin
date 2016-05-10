@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright (C) 2011 Nadim Benabdenbi <nadim.benabdenbi@gmail.com>
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<project name="${project.name}" xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+	<bannerLeft>
+		<name>${project.name}</name>
+		<href>http://maven-http-client-plugin.googlecode.com/svn/site/snapshot/index.html</href>
+	</bannerLeft>
+	<bannerRight>
+		<name>Google Code</name>
+		<src>images/google-code.gif</src>
+		<href>http://code.google.com</href>
+	</bannerRight>
+	<body>
+		<head>
+			<script type="text/javascript">
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-21253620-3']);
+				_gaq.push(['_trackPageview']);
+				(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			</script>
+		</head>
+		<links>
+			<item name="Apache" href="http://www.apache.org" />
+			<item name="Maven 2" href="http://maven.apache.org" />
+			<item name="Google Code" href="http://code.google.com/p/maven-http-client-plugin" />
+		</links>
+
+		<breadcrumbs>
+		</breadcrumbs>
+
+		<menu name="Overview">
+			<item name="Introduction" href="index.html" />
+			<item name="Goals" href="plugin-info.html" />
+			<item name="Usage" href="usage.html" />
+			<item name="FAQ" href="faq.html" />
+			<item name="Download" href="http://code.google.com/p/maven-http-client-plugin/downloads/list" />
+			<item name="Release Notes" href="release-notes.html" />
+		</menu>
+
+		<menu name="Examples">
+			<item name="Text content" href="examples/text-content.html" />
+			<item name="Request Parameters" href="examples/request-parameters.html" />
+			<item name="HTTP Authentication" href="examples/http-authentication.html" />
+			<item name="Form Authentication" href="examples/form-authentication.html" />
+			<item name="Proxy" href="examples/proxy.html" />
+			<item name="External Transformer" href="examples/external-transformer.html" />
+			<item name="Jira RSS Enricher" href="examples/jira-rss-enricher.html" />
+		</menu>
+
+		<menu name="Transformers">
+			<item name="Transformation Flow" href="transformers/index.html" />
+		</menu>
+
+		<menu name="Developers">
+			<item name="Road Map" href="developers/roadmap.html" />
+			<item name="Developer Wiki" href="developers/developers-wiki.html" />
+		</menu>
+
+		<menu ref="reports" />
+
+		<menu name="Links">
+			<item name="Http Components" href="http://hc.apache.org" />
+			<item name="Spring source" href="http://www.springsource.com/developer/spring" />
+		</menu>
+
+	</body>
+</project>

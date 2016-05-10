@@ -1,0 +1,156 @@
+#*
+ *    Copyright (C) 2011 Nadim Benabdenbi <nadim.benabdenbi@gmail.com>
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *#
+    ---
+    Usage
+    ---
+    Nadim Benabdenbi
+    ---
+    YYYY-MM-DD
+    ---
+
+Usage
+
+    ${project.description}.
+
+* Goals
+
+    The mojo http-client:execute has no default invocation phase set, therefore you will have to call it explicitly using http-client:execute.
+    
+    @see the {{{./plugin-info.html}plugin documentation page}}.
+    
+* Configuration
+
+    Each configuration property can be set using spring expression language  @see {{{http://static.springsource.org/spring/docs/3.0.x/reference/expressions.html} documentation}}.
+    
+    The maven project is also available within the bean name 'project' under the expression parser context.
+    
++---
+<project>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven-http-client-plugin-google-project-snapshots</id>
+      <url>http://maven-http-client-plugin.googlecode.com/svn/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>maven-http-client-plugin-google-project-releases</id>
+      <url>http://maven-http-client-plugin.googlecode.com/svn/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>${project.artifactId}</artifactId>
+        <version>${project.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <phase>generate:resources</phase> <!-- any phase -->
+              <goal>execute</goal> <!-- the plugin goal -->
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <failSafe>false</failSafe> <!-- (optional) if true the project build do not fail one plugin failure : default true -->
+          <request> <!-- request configuration (required)-->
+            <id>...</id> <!-- context id (optional) default-value 'request' -->
+            <url>http://localhost/helloWorld.html</url> <!-- the url (required)-- >
+            <method>get</method> <!-- http method either get or post : default is get-->
+            <parameters> <!-- http get or post parameters writed in java natural language do not care about http formatting -->
+              <parameter>
+                <id>...</id> <!-- context id (optional) -->
+                <name>...<name> <!-- the parameter name -->
+                <value>...</value> <!-- the parameter value --> 
+              <parameter>
+              ...
+            </parameters>
+            <credentials> <!-- the Http authentication credentials (optional) -->
+              <id>...</id> <!-- context id (optional) default-value 'credentials' -->
+              <login>guest</login> <!-- the Http authentication login (required) -->
+              <password>guest</password> <!-- the Http authentication password (required)-->
+            </credentials>
+            <formCredentials> <!-- the Http authentication credentials (optional)-->
+              <id>...</id> <!-- context id (optional) default-value 'formCredentials' -->
+              <formUrl>...</formUrl> <!-- the Http post form url (required)-->
+              <login>...</login> <!-- the Http form login value (required)-->
+              <password>...</password> <!-- the Http form password value (required)-->
+              <loginParameterName>...</loginParameterName> <!-- the Http form login field name (required) -->
+              <passwordParameterName>...</passwordParameterName> <!-- the Http form password field name (required) -->
+              <parameters> <!-- other form parameters if any (optional)-->
+                ... <!-- same as request parameters -->
+              </parameters>
+            </formCredentials>
+          </request>
+          <proxy> <!-- proxy settings (optional) -->
+            <id>...</id> <!-- context id (optional) default-value 'proxy' -->
+            <host></host> <!-- transformer flows (required) -->
+            <port>8181</port> <!-- proxy port default 8080 (optional) -->
+          </proxy>
+          <transformers> <!-- transformer flows (optional) -->
+            <transformer>
+              <id>...</id> <!-- context id (optional) -->
+              <className>...</className> <!-- the transformer class name -->
+              <properties> <!-- the transformer properties to set  -->
+                <property>
+                  <name>...</name> <!-- the transformer property name  -->
+                  <!-- the transformer property value -->
+                  <value>...</value> <!-- primitive object -->
+                  <!-- or -->
+                  <array> <!-- array object -->
+                    <param>value1</param>
+                    ...
+                  </array>
+                  <!-- or -->
+                  <list>
+                    <param>value1</param>
+                    ...
+                  </list>
+                  <!-- or -->
+                  <set>
+                  
+                  </set>
+                  <!-- or -->
+                  <map>
+                    <key1>value1</key1>
+                    ...
+                  </map>
+                  <!-- or -->
+                  <properties>
+                    <property>
+                      <name>...</name>
+                      <value>...</value>
+                    </property>
+                    ...
+                  </properties>
+                </property>
+                ...
+              <properties>
+            <transformer>
+          <transformers>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  ...
+</project>
++---
